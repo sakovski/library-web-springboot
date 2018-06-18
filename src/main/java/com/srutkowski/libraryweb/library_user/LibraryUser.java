@@ -23,7 +23,7 @@ public class LibraryUser {
     @Column(name = "lastname")
     private String lastname;
 
-    @OneToMany(mappedBy = "rent", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "libraryUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Rent> rents;
 
     public LibraryUser(@NotNull String firstname, @NotNull String lastname) {

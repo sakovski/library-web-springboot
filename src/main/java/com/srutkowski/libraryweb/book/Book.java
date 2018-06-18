@@ -30,7 +30,7 @@ public class Book {
     @Column(name = "is_rented")
     public boolean isRented;
 
-    @OneToMany(mappedBy = "rent", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Rent> rents;
 
     public Book(@NotNull String title, @NotNull String author, @NotNull String isbnNumber, boolean isRented) {
