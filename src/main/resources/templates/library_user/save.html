@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Book</title>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.1.0/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <h1>Create Library User</h1>
+
+    <form class="form-group" action="library_user/save" th:action="@{save}" method="post">
+        <input th:type="hidden" name="id" th:field="${user.id}" />
+        <div class="form-group">
+            <label for="title">Firstname</label>
+            <input type="text" class="form-control" id="title" th:field="${user.firstname}" />
+        </div>
+        <div class="form-group">
+            <label for="author">Lastname</label>
+            <textarea class="form-control" id="author" th:field="${user.lastname}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="#" th:href="@{/library_user/index}" class="btn btn-danger" role="button">Cancel</a>
+    </form>
+
+</div>
+
+<footer class="page-footer" th:replace="fragments/footer"></footer>
+</body>
+</html>

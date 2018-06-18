@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.1.0/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <h1>Library Users</h1>
+
+    <div class="card">
+        <div class="card-block">
+            <a href="/library_user/save" th:href="@{/library_user/save}" class="btn btn-success">Create</a>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user :${users}">
+                    <td th:text="${user.getFirstname()}"></td>
+                    <td th:text="${user.getLastname()}"></td>
+                    <td>
+                        <a href="/library_user/save/" th:href="@{/library_user/save/__${user.id}__}" class="btn btn-primary">Edit</a>
+                        <a href="/library_user/delete/" th:href="@{/library_user/delete/__${user.id}__}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <hr/>
+        </div>
+    </div>
+</div>
+
+<footer class="page-footer" th:replace="fragments/footer"></footer>
+</body>
+</html>

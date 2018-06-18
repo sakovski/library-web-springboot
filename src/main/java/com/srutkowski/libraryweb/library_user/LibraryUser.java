@@ -37,6 +37,14 @@ public class LibraryUser {
         this.rents = new HashSet<>();
     }
 
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getFirstname() {
         return this.firstname;
     }
