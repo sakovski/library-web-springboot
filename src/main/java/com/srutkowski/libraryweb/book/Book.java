@@ -45,6 +45,14 @@ public class Book {
         this.rents = new HashSet<>();
     }
 
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -71,6 +79,10 @@ public class Book {
 
     public boolean isRented() {
         return isRented;
+    }
+
+    public String isAvailable() {
+        return isRented ? "No" : "Yes";
     }
 
     public void setRented(boolean rented) {

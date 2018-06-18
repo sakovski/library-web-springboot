@@ -1,13 +1,9 @@
 package com.srutkowski.libraryweb.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("book")
@@ -22,16 +18,29 @@ public class BookController {
         return "book/index";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(Book book) {
-        bookRepository.save(book);
-        return "redirect:/book";
+    @RequestMapping(value={"/save","/save/{id}"}, method = RequestMethod.GET)
+    public String saveForm(Model model, @PathVariable(required = false, name = "id") Long id) {
+        if (null != id) {
+            model.addAttribute("book", bookRepository.findById(id));
+        } else {
+            model.addAttribute("book", new Book());
+        }
+        return "book/save";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String delete(Long id) {
+    @RequestMapping(value="/save", method = RequestMethod.POST)
+    public String save(Model model, Book book) {
+        bookRepository.save(book);
+        //model.addAttribute("books", bookRepository.findAll());
+        //return "book/index";
+        return "redirect:/book/index";
+    }
+
+    @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
+    public String delete(Model model, @PathVariable(required = true, name = "id") Long id) {
         bookRepository.deleteById(id);
-        return "redirect:/book";
+        model.addAttribute("books", bookRepository.findAll());
+        return "book/index";
     }
 
     @RequestMapping(value = "/findOne", method = RequestMethod.GET)

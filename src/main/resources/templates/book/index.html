@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Books</title>
     <script type="text/javascript" th:src="@{/webjars/jquery/3.1.0/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
@@ -11,12 +11,15 @@
     <div class="container">
         <div class="card">
             <div class="card-block">
+                <a href="/book/save" th:href="@{/book/save}" class="btn btn-success">Create</a>
                 <table class="table table-hover">
                     <thead>
                     <tr>
                         <th>Title</th>
                         <th>Author</th>
                         <th>ISBN</th>
+                        <th>Available</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,6 +27,12 @@
                             <td th:text="${book.getTitle()}"></td>
                             <td th:text="${book.getAuthor()}"></td>
                             <td th:text="${book.getIsbnNumber()}"></td>
+                            <td th:text="${book.isAvailable()}"></td>
+                            <td>
+                                <a href="/book/save/" th:href="@{/notesEdit/__${book.id}__}" class="btn btn-primary">Edit</a>
+                                <a href="/book/delete/" th:href="@{/notesEdit/__${book.id}__}" class="btn btn-danger">Delete</a>
+                                <a href="/book/rent" class="btn btn-light">Rent</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

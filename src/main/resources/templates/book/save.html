@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Book</title>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.1.0/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container">
+
+    <h1>Create</h1>
+
+    <form class="form-group" action="book/save" th:action="@{save}" method="post">
+        <input th:type="hidden" name="id" th:field="${book.id}" />
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" th:field="${book.title}" />
+        </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <textarea class="form-control" id="author" th:field="${book.author}"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="isbnNumber">ISBN number</label>
+            <textarea class="form-control" id="isbnNumber" th:field="${book.isbnNumber}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="#" th:href="@{/book/index}" class="btn btn-danger" role="button">Cancel</a>
+    </form>
+
+</div>
+</body>
+</html>
