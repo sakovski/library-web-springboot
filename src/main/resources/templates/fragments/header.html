@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.1.0/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Library Web System</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/book/index" th:href="@{/book/index}">Books</a></li>
+                <li><a href="#">Library Users</a></li>
+                <li><a href="#">Rents</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
