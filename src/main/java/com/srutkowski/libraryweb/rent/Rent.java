@@ -34,10 +34,42 @@ public class Rent {
     @Column(name = "date_returned")
     private Date dateReturned;
 
-    public Rent(@NotNull LibraryUser libraryUser, @NotNull Book book, @NotNull Date dateRented, Date dateReturned) {
+    public Rent(@NotNull LibraryUser libraryUser, @NotNull Book book, @NotNull Date dateRented) {
         this.libraryUser = libraryUser;
         this.book = book;
         this.dateRented = dateRented;
+        this.dateReturned = null;
+    }
+
+    public LibraryUser getLibraryUser() {
+        return libraryUser;
+    }
+
+    public void setLibraryUser(LibraryUser libraryUser) {
+        this.libraryUser = libraryUser;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public Date getDateRented() {
+        return dateRented;
+    }
+
+    public void setDateRented(Date dateRented) {
+        this.dateRented = dateRented;
+    }
+
+    public Date getDateReturned() {
+        return dateReturned;
+    }
+
+    public void setDateReturned(Date dateReturned) {
         this.dateReturned = dateReturned;
     }
 }
