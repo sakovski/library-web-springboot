@@ -33,6 +33,10 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Rent> rents;
 
+    public Book() {
+
+    }
+
     public Book(@NotNull String title, @NotNull String author, @NotNull String isbnNumber, boolean isRented) {
         this.title = title;
         this.author = author;

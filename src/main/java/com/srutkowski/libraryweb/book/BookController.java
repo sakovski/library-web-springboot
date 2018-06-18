@@ -17,8 +17,8 @@ public class BookController {
     private BookRepository bookRepository;
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index(Model model, @RequestParam() int page) {
-        model.addAttribute("books", bookRepository.findAll(new PageRequest(page, 10)));
+    public String index(Model model) {
+        model.addAttribute("books", bookRepository.findAll());
         return "book/index";
     }
 

@@ -34,6 +34,11 @@ public class Rent {
     @Column(name = "date_returned")
     private Date dateReturned;
 
+    public Rent() {
+
+    }
+
+
     public Rent(@NotNull LibraryUser libraryUser, @NotNull Book book, @NotNull Date dateRented) {
         this.libraryUser = libraryUser;
         this.book = book;

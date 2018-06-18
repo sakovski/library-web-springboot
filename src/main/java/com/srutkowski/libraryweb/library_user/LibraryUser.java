@@ -26,6 +26,11 @@ public class LibraryUser {
     @OneToMany(mappedBy = "libraryUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Rent> rents;
 
+    public LibraryUser() {
+
+    }
+
+
     public LibraryUser(@NotNull String firstname, @NotNull String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
