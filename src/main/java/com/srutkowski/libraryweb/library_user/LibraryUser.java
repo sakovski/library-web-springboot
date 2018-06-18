@@ -13,7 +13,7 @@ public class LibraryUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotNull
     @Column(name = "firstname")

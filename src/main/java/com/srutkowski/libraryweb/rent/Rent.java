@@ -13,7 +13,7 @@ public class Rent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)

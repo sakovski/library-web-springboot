@@ -29,8 +29,8 @@
                             <td th:text="${book.getIsbnNumber()}"></td>
                             <td th:text="${book.isAvailable()}"></td>
                             <td>
-                                <a href="/book/save/" th:href="@{/notesEdit/__${book.id}__}" class="btn btn-primary">Edit</a>
-                                <a href="/book/delete/" th:href="@{/notesEdit/__${book.id}__}" class="btn btn-danger">Delete</a>
+                                <a href="/book/save/" th:href="@{/book/save/__${book.id}__}" class="btn btn-primary">Edit</a>
+                                <a href="/book/delete/" th:href="@{/book/delete/__${book.id}__}" class="btn btn-danger">Delete</a>
                                 <a href="/book/rent" class="btn btn-light">Rent</a>
                             </td>
                         </tr>
