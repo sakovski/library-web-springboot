@@ -17,9 +17,9 @@
             <div class="card-block">
                 <a href="/book/save" th:href="@{/book/save}" class="btn btn-success">Create</a>
 
-                <form class="form-group" action="book/search" th:action="@{search}" method="get">
+                <form class="form-group" action="book/search" th:action="@{search/}" method="post">
                     <div class="form-group">
-                        <input type="text" placeholder="Title, author or ISBN" class="form-control" id="search_phrase" th:field="${search_param}" />
+                        <input type="text" placeholder="Title, author or ISBN" class="form-control" id="search_param" th:field="${search_param}" />
                     </div>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
