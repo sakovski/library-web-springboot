@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.1.0/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <h1>User details</h1>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Firstname</dt>
+            <dd th:text="${user.firstname}"></dd>
+            <dt>Lastname</dt>
+            <dd th:text="${user.lastname}"></dd>
+            <dt>Rents history</dt>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Book title</th>
+                        <th>Rent date</th>
+                        <th>Return date</th>
+                    </tr>
+                    <tr th:each="rent :${user.getRents()}">
+                        <td th:text="${rent.getBook().toString()}"></td>
+                        <td th:text="${rent.getDateRented()}"></td>
+                        <td th:text="${rent.getDateReturned()}"></td>
+                    </tr>
+                </table>
+            </dd>
+
+        </dl>
+    </div>
+    <div>
+        <a href="#" th:href="@{/library_user/index}" class="btn btn-danger" role="button">Back to list</a>
+    </div>
+
+</div>
+
+<footer class="page-footer" th:replace="fragments/footer"></footer>
+</body>
+</html>

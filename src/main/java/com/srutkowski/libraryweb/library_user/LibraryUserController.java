@@ -1,12 +1,15 @@
 package com.srutkowski.libraryweb.library_user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("library_user")
@@ -17,7 +20,8 @@ public class LibraryUserController {
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Model model) {
-        model.addAttribute("users", libraryUserRepository.findAll());
+        List<LibraryUser> users = libraryUserRepository.findAll(new Sort(Sort.Direction.ASC, "lastname"));
+        model.addAttribute("users", users);
         return "library_user/index";
     }
 
@@ -47,5 +51,12 @@ public class LibraryUserController {
     @ResponseBody
     public LibraryUser findOne(Long id) {
         return libraryUserRepository.findById(id).get();
+    }
+
+    @RequestMapping(value="/details/{id}", method = RequestMethod.GET)
+    public String details(Model model, @PathVariable(required = true, name = "id") Long id) {
+        LibraryUser libraryUser = libraryUserRepository.findById(id).get();
+        model.addAttribute("user", libraryUser);
+        return "library_user/details";
     }
 }

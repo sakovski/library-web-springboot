@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name="library_user")
@@ -67,6 +68,12 @@ public class LibraryUser {
 
     public Set<Rent> getRents(){
         return this.rents;
+    }
+
+    public Set<Rent> getCurrentRents() {
+        return this.rents.stream()
+                .filter(rent -> rent.getDateReturned() == null)
+                .collect(Collectors.toSet());
     }
 
     @Override
