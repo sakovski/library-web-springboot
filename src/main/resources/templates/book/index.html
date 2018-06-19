@@ -14,14 +14,17 @@
         <h1>Books</h1>
 
         <div class="card">
-            <div class="card-block">
+            <div class="card-header">
                 <a href="/book/save" th:href="@{/book/save}" class="btn btn-success">Create</a>
+            </div>
+            <div class="card-block">
 
-                <form class="form-group" action="book/search" th:action="@{search/}" method="post">
+
+                <form class="form-group" action="book/search" th:object="${search_param}" th:action="@{/book/search}" method="post">
                     <div class="form-group">
-                        <input type="text" placeholder="Title, author or ISBN" class="form-control" id="search_param" th:field="${search_param}" />
+                        <input type="text" placeholder="Title, author or ISBN" class="form-control" id="search_param" th:field="${search_param.userInput}" />
+                        <button type="submit" class="btn btn-primary">Search</button>
                     </div>
-                    <button type="submit" class="btn btn-primary">Search</button>
                 </form>
 
                 <table class="table table-hover">

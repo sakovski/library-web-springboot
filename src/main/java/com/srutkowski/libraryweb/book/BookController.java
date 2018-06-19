@@ -1,5 +1,6 @@
 package com.srutkowski.libraryweb.book;
 
+import com.srutkowski.libraryweb.search.SearchInput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,7 @@ public class BookController {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("books", bookRepository.findAll(new Sort(Sort.Direction.ASC, "title")));
-        model.addAttribute("search_param", "");
+        model.addAttribute("search_param", new SearchInput());
         return "book/index";
     }
 
@@ -52,14 +53,15 @@ public class BookController {
         return bookRepository.findById(id).get();
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public String search(Model model, String search_param) {
+    @PostMapping(value = "/search")
+    public String search(Model model, @ModelAttribute SearchInput search_param) {
         System.out.println("SEARCH PARAM:" + search_param);
-        List<Book> filteredBook = bookRepository.findAll().stream()
-                .filter(book -> book.getTitle().contains(search_param) || book.getAuthor().contains(search_param) || book.getIsbnNumber().contains(search_param))
+        List<Book> filteredBook = bookRepository.findAll(new Sort(Sort.Direction.ASC, "title"))
+                .stream()
+                .filter(book -> book.getTitle().contains(search_param.getUserInput()) || book.getAuthor().contains(search_param.getUserInput()) || book.getIsbnNumber().contains(search_param.getUserInput()))
                 .collect(Collectors.toList());
         model.addAttribute("books", filteredBook);
-        model.addAttribute("search_param", "");
+        model.addAttribute("search_param", new SearchInput());
         return "book/index";
     }
 }
