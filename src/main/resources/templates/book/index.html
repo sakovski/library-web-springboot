@@ -16,6 +16,14 @@
         <div class="card">
             <div class="card-block">
                 <a href="/book/save" th:href="@{/book/save}" class="btn btn-success">Create</a>
+
+                <form class="form-group" action="book/search" th:action="@{search}" method="get">
+                    <div class="form-group">
+                        <input type="text" placeholder="Title, author or ISBN" class="form-control" id="search_phrase" th:field="${search_param}" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+
                 <table class="table table-hover">
                     <thead>
                     <tr>
@@ -35,7 +43,6 @@
                             <td>
                                 <a href="/book/save/" th:href="@{/book/save/__${book.id}__}" class="btn btn-primary">Edit</a>
                                 <a href="/book/delete/" th:href="@{/book/delete/__${book.id}__}" class="btn btn-danger">Delete</a>
-                                <a href="/book/rent" class="btn btn-light">Rent</a>
                             </td>
                         </tr>
                     </tbody>

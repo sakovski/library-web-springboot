@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 @RequestMapping("book")
 public class BookController {
@@ -15,6 +18,7 @@ public class BookController {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("books", bookRepository.findAll());
+        model.addAttribute("search_param", "");
         return "book/index";
     }
 
@@ -46,5 +50,19 @@ public class BookController {
         return bookRepository.findById(id).get();
     }
 
+    @RequestMapping(value="/search", method = RequestMethod.POST)
+    public String rent(Model model, Book book) {
+        model.addAttribute("book", book);
+        return "redirect:/rent/save";
+    }
 
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search(Model model, String search_param) {
+        List<Book> filteredBook = bookRepository.findAll().stream()
+                .filter(book -> book.getTitle().contains(search_param) || book.getAuthor().contains(search_param) || book.getIsbnNumber().contains(search_param))
+                .collect(Collectors.toList());
+        model.addAttribute("books", filteredBook);
+        model.addAttribute("search_param", "");
+        return "book/index";
+    }
 }

@@ -46,6 +46,14 @@ public class Rent {
         this.dateReturned = null;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public LibraryUser getLibraryUser() {
         return libraryUser;
     }

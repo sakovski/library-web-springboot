@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Books</title>
+    <title>Rents</title>
     <script type="text/javascript" th:src="@{/webjars/jquery/3.1.0/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
@@ -12,27 +12,30 @@
 
 <div class="container">
 
-    <h1>Library Users</h1>
+    <h1>Rents</h1>
 
     <div class="card">
         <div class="card-block">
-            <a href="/library_user/save" th:href="@{/library_user/save}" class="btn btn-success">Create</a>
+            <a href="/book/save" th:href="@{/rent/save}" class="btn btn-success">New Rent</a>
 
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
+                    <th>Library User</th>
+                    <th>Book</th>
+                    <th>Date rented</th>
+                    <th>Date returned</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="user :${users}">
-                    <td th:text="${user.getFirstname()}"></td>
-                    <td th:text="${user.getLastname()}"></td>
+                <tr th:each="rent :${rents}">
+                    <td th:text="${rent.getLibraryUser().toString()}"></td>
+                    <td th:text="${rent.getBook().getTitle()}"></td>
+                    <td th:text="${rent.getDateRented()}"></td>
+                    <td th:text="${rent.getDateReturned()}"></td>
                     <td>
-                        <a href="/library_user/save/" th:href="@{/library_user/save/__${user.id}__}" class="btn btn-primary">Edit</a>
-                        <a href="/library_user/delete/" th:href="@{/library_user/delete/__${user.id}__}" class="btn btn-danger">Delete</a>
+                        <a href="/rent/return/" th:href="@{/rent/return/__${rent.getId()}__}" class="btn btn-primary">Return</a>
                     </td>
                 </tr>
                 </tbody>
