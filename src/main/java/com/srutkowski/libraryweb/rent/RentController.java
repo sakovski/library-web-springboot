@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,7 +52,7 @@ public class RentController {
 
     @RequestMapping(value="/save", method = RequestMethod.POST)
     public String save(Model model, Rent rent) {
-        rent.setDateRented(new Date(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(), LocalDateTime.now().getDayOfMonth()));
+        rent.setDateRented(new Date());
         rent.getBook().setRented(true);
         rentRepository.save(rent);
         return "redirect:/rent/index";
@@ -62,7 +61,7 @@ public class RentController {
     @RequestMapping(value="/return/{id}", method = RequestMethod.GET)
     public String returnbook(Model model, @PathVariable(required = true, name = "id") Long id) {
         Rent rent = rentRepository.getOne(id);
-        rent.setDateReturned(new Date(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(), LocalDateTime.now().getDayOfMonth()));
+        rent.setDateReturned(new Date());
         Book book = rent.getBook();
         book.setRented(false);
         bookRepository.save(book);
