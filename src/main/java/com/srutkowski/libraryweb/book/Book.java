@@ -1,6 +1,8 @@
 package com.srutkowski.libraryweb.book;
 
 import com.srutkowski.libraryweb.rent.Rent;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -31,6 +33,7 @@ public class Book {
     public boolean isRented;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Rent> rents;
 
     public Book() {

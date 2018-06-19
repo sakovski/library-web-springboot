@@ -33,9 +33,7 @@
                     <td th:text="${user.getLastname()}"></td>
                     <td th:text="${user.getCurrentRents().size()}"></td>
                     <td>
-                        <a href="/library_user/save/" th:href="@{/library_user/save/__${user.id}__}" class="btn btn-primary">Edit</a>
-                        <a href="/library_user/delete/" th:href="@{/library_user/delete/__${user.id}__}" class="btn btn-danger">Delete</a>
-                        <a href="/library_user/details/" th:href="@{/library_user/details/__${user.id}__}" class="btn btn-light">Details</a>
+                        <a href="/library_user/details/" th:href="@{/library_user/details/__${user.id}__}" class="btn btn-primary">Details</a>
                     </td>
                 </tr>
                 </tbody>

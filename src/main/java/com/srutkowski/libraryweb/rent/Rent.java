@@ -2,6 +2,8 @@ package com.srutkowski.libraryweb.rent;
 
 import com.srutkowski.libraryweb.book.Book;
 import com.srutkowski.libraryweb.library_user.LibraryUser;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

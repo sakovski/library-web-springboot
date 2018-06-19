@@ -22,13 +22,9 @@ public class BookController {
         return "book/index";
     }
 
-    @RequestMapping(value={"/save","/save/{id}"}, method = RequestMethod.GET)
-    public String saveForm(Model model, @PathVariable(required = false, name = "id") Long id) {
-        if (null != id) {
-            model.addAttribute("book", bookRepository.findById(id));
-        } else {
-            model.addAttribute("book", new Book());
-        }
+    @RequestMapping(value="/save", method = RequestMethod.GET)
+    public String saveForm(Model model) {
+        model.addAttribute("book", new Book());
         return "book/save";
     }
 
@@ -40,8 +36,13 @@ public class BookController {
 
     @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
     public String delete(Model model, @PathVariable(required = true, name = "id") Long id) {
-        bookRepository.deleteById(id);
-        return "redirect:/book/index";
+        Book book = bookRepository.getOne(id);
+        if(!book.isRented())
+        {
+            bookRepository.deleteById(id);
+            return "redirect:/book/index";
+        }
+        return "error/error";
     }
 
     @RequestMapping(value = "/findOne", method = RequestMethod.GET)

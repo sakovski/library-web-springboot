@@ -25,25 +25,15 @@ public class LibraryUserController {
         return "library_user/index";
     }
 
-    @RequestMapping(value={"/save","/save/{id}"}, method = RequestMethod.GET)
-    public String saveForm(Model model, @PathVariable(required = false, name = "id") Long id) {
-        if (null != id) {
-            model.addAttribute("user", libraryUserRepository.findById(id));
-        } else {
-            model.addAttribute("user", new LibraryUser());
-        }
+    @RequestMapping(value="/save", method = RequestMethod.GET)
+    public String saveForm(Model model) {
+        model.addAttribute("user", new LibraryUser());
         return "library_user/save";
     }
 
     @RequestMapping(value="/save", method = RequestMethod.POST)
     public String save(Model model, LibraryUser libraryUser) {
         libraryUserRepository.save(libraryUser);
-        return "redirect:/library_user/index";
-    }
-
-    @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-    public String delete(Model model, @PathVariable(required = true, name = "id") Long id) {
-        libraryUserRepository.deleteById(id);
         return "redirect:/library_user/index";
     }
 
