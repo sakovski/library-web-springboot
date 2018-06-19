@@ -1,6 +1,7 @@
 package com.srutkowski.libraryweb.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class BookController {
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Model model) {
-        model.addAttribute("books", bookRepository.findAll());
+        model.addAttribute("books", bookRepository.findAll(new Sort(Sort.Direction.ASC, "title")));
         model.addAttribute("search_param", "");
         return "book/index";
     }
