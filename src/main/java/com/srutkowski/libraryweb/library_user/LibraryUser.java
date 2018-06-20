@@ -1,5 +1,6 @@
 package com.srutkowski.libraryweb.library_user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.srutkowski.libraryweb.rent.Rent;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class LibraryUser {
     private String lastname;
 
     @OneToMany(mappedBy = "libraryUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JsonBackReference
     private Set<Rent> rents;
 
     public LibraryUser() {

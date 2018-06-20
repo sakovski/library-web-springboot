@@ -1,5 +1,8 @@
 package com.srutkowski.libraryweb.book;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.srutkowski.libraryweb.rent.Rent;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -11,6 +14,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "book")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Book {
 
     @Id
@@ -33,6 +39,7 @@ public class Book {
     public boolean isRented;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JsonBackReference
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Rent> rents;
 

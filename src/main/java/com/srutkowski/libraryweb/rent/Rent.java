@@ -1,9 +1,10 @@
 package com.srutkowski.libraryweb.rent;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.srutkowski.libraryweb.book.Book;
 import com.srutkowski.libraryweb.library_user.LibraryUser;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "rent")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Rent {
 
     @Id
@@ -20,11 +24,13 @@ public class Rent {
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "library_user_id")
+    //@JsonManagedReference
     private LibraryUser libraryUser;
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "book_id")
+    //@JsonManagedReference
     private Book book;
 
     @NotNull
